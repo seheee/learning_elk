@@ -34,9 +34,9 @@
 * 각 데이터베이스의 데이터, 로우 데이터, 윈도우 이벤트 등으로부터 데이터 수집
 * 데이터를 집계 및 보관, 서버 데이터 처리, 파이프라인으로 데이터를 수집하여 필터를 통해 변환 후 ElasticSearch로 전송
 * 입출력 도구로 inpuut > filter > output 의 pipeline 구조로 구성되어 있다.
-* input : Beats, CloudWatch, Eventlog 등의 다양한 입력을 지원하여 데이터를 수집
-* filter : 형식이나 복잡성에 상관없이 설정을 통해 데이터를 동적으로 변환
-* output : ElasticSearch, Email, ECS, Kafka 등 원하는 저장소에 데이터 전송
+  * input : Beats, CloudWatch, Eventlog 등의 다양한 입력을 지원하여 데이터를 수집
+  * filter : 형식이나 복잡성에 상관없이 설정을 통해 데이터를 동적으로 변환
+  * output : ElasticSearch, Email, ECS, Kafka 등 원하는 저장소에 데이터 전송
 
 ## Kibana
 * 사용자 Application으로 Elastic Search에 저장된 정보들을 검색 및 분석하고 시각화하는 기능 제공
