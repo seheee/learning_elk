@@ -1,35 +1,35 @@
 # ElasticSearch Part2
 
 ## Create, Read, Delete
-### Verify Index
+#### Verify Index
 * `curl -XGET http://localhost:9200/classes`
   * classes가 index name, classes라는 인덱스가 있는지 확인함
   * "status":404 인 경우 현재 classes라는 인덱스가 elasticsearch에 존재하지 않는것
 * `curl -XGET http://localhost:9200/classes?pretty`
   * ?pretty를 파라미터로 넣어주면 결과를 깔끔하게 볼 수 있음
-### Create Index
+#### Create Index
 * `curl -XPUT http://localhost:9200/classes`
   * classes라는 인덱스를 생성
-### Delete Index
+#### Delete Index
 * `curl -XDELETE http://localhost:9200/classes`
   * classes라는 인덱스를 삭제
-### Create Document
+#### Create Document
 * index가 있을때 만들 수 있고, index가 없을 때도 index명과 type명을 명시하면 바로 document 생성 가능
 * `curl -XPOST http://localhost:9200/classes/class/1/ -d '{ "title" : "Algorithm" , "professor":"John" }'`
   * classes : index명
   * class : type명
   * 1 : id
-### Create Index, Type, Document from file
+#### Create Index, Type, Document from file
 * `curl -XPOST http://localhost:9200/classes/class/1/ -d @oneclass.json`
   * oneclass.json라는 파일을 사용해서 document 생성
   
 ## Update
-### Add one more field
+#### Add one more field
 * `curl -XPOST http://localhost:9200/classes/class/1/_update -d '{ "doc" : {"unit":1} }'`
-### Update one field
+#### Update one field
 * `curl -XPOST http://localhost:9200/classes/class/1/_update -d '{ "doc" : {"unit":2} }'`
   * 추가할때와 같음
-### Update one field with Script
+#### Update one field with Script
 * `curl -XPOST http://localhost:9200/classes/class/1/_update -d '{ "script" : "ctx._source.unit += 5" }'`
   * unit에 5를 더해줌
 
@@ -63,13 +63,13 @@
   ```
 
 ## Search
-### search
+#### search
 * `curl -XGET localhost:9200/basketball/record/_search?pretty`
   * 모든 document가 나옴
-### search - URI옵션
+#### search - URI옵션
 * `curl -XGET 'localhost:9200/basketball/record/_search?q=points:30&pretty'`
   * query는 points가 30인것만 search 하라는 것
-### search - request body 사용
+#### search - request body 사용
 * `curl -XGET 'localhost:9200/basketball/record/_search -d '{"query":{"term":{"points":30}}}'`
 * request body는 여러가지 옵션 있음
 
@@ -78,7 +78,7 @@
 * 그 중 Metric Aggregation은 산술할 때 쓰임
   * ex) 평균, 최대, 최소 구할때
 * `curl -XGET localhost:9200/_search?pretty --data-binary @avg_points_aggs.json`
-### Aggregations structure
+#### Aggregations structure
 ```
 "aggregations" : {
     "<aggregation_name>" : {
@@ -113,7 +113,7 @@ ex)
 ## Aggregation(Bucket)
 * Bucket Aggregation은 group by로 볼 수 있음
 * `curl -XGET localhost:9200/_search?pretty --data-binary @terms_aggs.json`
-### term aggregations
+#### term aggregations
 ex)
 ```
 {
