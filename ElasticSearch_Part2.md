@@ -42,11 +42,15 @@
 
 ## Bulk Post
 * 여러개의 document를 한 번에 Elasticsearch에 삽입
+* bulk는 두 개의 라인으로 구성되어있음
+  * meta information : index, type, id
+  * document
+* bulk 동작은 따로따로 수행하는 것 보다 속도가 훨씬 빠름
+* 특히 대량의 데이터를 입력 할 때는 bulk API를 사용해야 불필요한 오버헤드가 없음
 * `curl -XPOST http://localhost:9200/_bulk?pretty --data-binary @classes.json -H 'Content-Type: application/json'`
   * classes.json : bulk로 document가 들어있음
-  * bulk는 두 개의 라인으로 구성되어있음
-    * meta information : index, type, id
-    * document
+
+   
 
 ## Mapping
 * Mapping은 관계형 데이터 베이스에서의 schema와 동일
@@ -73,12 +77,18 @@
 
 ## Search
 #### search
+* 쿼리를 통한 검색 기능
+* 검색은 인덱스 단위로 이루어짐
+* 쿼리를 입력하지 않으면 전체 도큐먼트를 찾는 match_all검색을 함
 * `curl -XGET localhost:9200/basketball/record/_search?pretty`
   * 모든 document가 나옴
-#### search - URI옵션
+#### search - URI검색
+* _search뒤에 q파라미터를 사용해서 검색어 입력
+* 요청주소에 검색어를 넣어 검색하는 방식
 * `curl -XGET 'localhost:9200/basketball/record/_search?q=points:30&pretty'`
   * query는 points가 30인것만 search 하라는 것
 #### search - request body 사용
+* 검색 쿼리를 데이터 본문으로 입력하는 방식
 * `curl -XGET 'localhost:9200/basketball/record/_search -d '{"query":{"term":{"points":30}}}' -H 'Content-Type:application/json'`
 * request body는 여러가지 옵션 있음
 * Term 쿼리
