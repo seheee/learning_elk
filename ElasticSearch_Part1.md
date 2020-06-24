@@ -51,15 +51,16 @@ filter {
   * 각 document에 대한 내용을 전부 따로 저장
 * -> search시 ElasticSearch를 사용할 경우 더 빠름      
 
-ElasticSearch -> Relational DB       
-Index : Database   
-Type : Table   
-Document : Row   
-Field : Column   
-Mapping : Schema   
-GET : Select   
-PUT : Update   
-POST : Insert   
-DELETE : Delete   
+|ElasticSearch|Relational DB|
+|:---:|:---:|
+|Index|Database|   
+|Type|Table|   
+|Document|Row|   
+|Field|Column|   
+|Mapping|Schema|   
+|GET|Select|   
+|PUT|Update|   
+|POST|Insert|   
+|DELETE|Delete|   
 
 
