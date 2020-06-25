@@ -19,7 +19,7 @@
 
 ## Kafka 구조
 * 카프카 클러스터를 중심으로 producer와 consumer가 데이터를 push하고 pull하는 구조
-#### Producer  
+### Producer  
 * 데이터를 발생시키고 카프카 클러스터에 적재하는 프로세스
 * topic에 해당하는 메시지 생성
 * 특정 topic으로 데이터를 publish
@@ -41,7 +41,7 @@
         }
     }
     ```
-#### Consumer Group
+### Consumer Group
 * consumer의 집합을 구성하는 단위
 * 카프카 클러스터에서 데이터를 가져올때 consumer group 단위로 가져오며, consumer group 안의 consumer 만큼 파티션의 데이터를 분산처리함
 #### Consumer
@@ -58,7 +58,7 @@
     * 한 그룹이 각 파티션의 특정 offset을 읽고 있어도 다른 그룹이 읽는 데 영향 미치지 않음
     * __consumer_offset 토픽에는 consumer group별로, 토픽별로 offset을 나누어 저장하기 때문
     *  -> 하나의 토픽으로 들어온 데이터는 다양한 역할을 하는 consumer들이 각자 원하는 데이터로 처리 가능
-#### Kafka Cluster 
+### Kafka Cluster 
 * 카프카 서버로 이루어진 클러스터
 * **Broker**
   * 카프카가 설치되어있는 서버 단위
@@ -91,7 +91,7 @@
   * Folloer partition : 리더의 데이터를 복사함
   * 브로커 1개가 죽더라도 follower partition이 존재하면 복제본으로 복구 가능, leader partition 역할 승계
 
-#### Lag
+### Lag
 * **Kafka consumer lag**
   * 프로듀서가 최근에 넣은 데이터의 offset, 컨슈머가 가져간 데이터의 offset의 차이
   * lag의 숫자를 통해 현재 해당 토픽에 대해 파이프라인으로 연계되어있는 프로듀서와 컨슈머의 상태에 대해 유추 가능
